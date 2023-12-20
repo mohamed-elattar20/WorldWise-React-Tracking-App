@@ -73,7 +73,6 @@ function Form() {
   if (!lat && !lng)
     return <Message message={`Start By Clicking Somewhere on The Map`} />;
 
-  // const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
 

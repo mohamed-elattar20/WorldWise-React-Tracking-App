@@ -16,7 +16,7 @@ const CountryList = () => {
 
   //  V1
   const countries = new Map();
-  const newArr = cities.map((city) => {
+  cities.map((city) => {
     if (!countries.has(city.id)) {
       countries.set(city.country, {
         country: city.country,

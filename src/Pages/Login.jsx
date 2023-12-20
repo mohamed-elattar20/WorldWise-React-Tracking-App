@@ -45,7 +45,9 @@ export default function Login() {
             value={password}
           />
         </div>
-        <span style={{ fontSize: "14px", color: "red", fontWeight: "bold" }}>
+        <span
+          style={{ fontSize: "14px", color: "#f65f5f", fontWeight: "bold" }}
+        >
           {error}
         </span>
         <div>

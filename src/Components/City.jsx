@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useCities } from "../Contexts/CitiesContext";
 import styles from "./City.module.css";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Spinner from "./Spinner";
 import Button from "./Button";
 
@@ -14,19 +14,16 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function City() {
-  const { cities, isLoading, currentCity, getCity } = useCities();
+  const { isLoading, currentCity, getCity } = useCities();
 
   const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const lat = searchParams.get("lat");
-  const lng = searchParams.get("lng");
 
   const navigate = useNavigate();
   // console.log(id);
 
   useEffect(() => {
     getCity(id);
-  }, [id]);
+  }, [id, getCity]);
 
   if (isLoading) return <Spinner />;
 

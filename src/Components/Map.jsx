@@ -20,7 +20,7 @@ const Map = () => {
   const [mapPosition, setMapPosition] = useState([40, 0]);
   const { cities } = useCities();
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const {
     isLoading: isLoadingPosition,

@@ -17,7 +17,7 @@ const reducer = (currState, action) => {
         ...currState,
         user: null,
         isAuthenticated: false,
-        error: "The Email or the the Password is wrong",
+        error: "The Email or the Password is wrong",
       };
     case "logout":
       return { ...currState, user: null, isAuthenticated: false, error: "" };
