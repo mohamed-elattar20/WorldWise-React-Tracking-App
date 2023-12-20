@@ -20,7 +20,7 @@ const reducer = (currState, action) => {
         error: "The Email or the the Password is wrong",
       };
     case "logout":
-      return { ...currState, user: null, isAuthenticated: false };
+      return { ...currState, user: null, isAuthenticated: false, error: "" };
     default:
       throw new Error("Unknown Action");
   }
