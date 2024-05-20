@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { useCities } from "../Contexts/CitiesContext";
 import useGeolocation from "../hooks/useGeolocation";
 import Button from "./Button";
+
 const Map = () => {
   const [searchParams] = useSearchParams();
   const lat = searchParams.get("lat");
@@ -33,11 +34,13 @@ const Map = () => {
       setMapPosition([lat, lng]);
     }
   }, [lat, lng]);
+
   useEffect(() => {
     if (geolocationPosition) {
       setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
     }
   }, [geolocationPosition]);
+
   return (
     <>
       <div className={styles.mapContainer}>
@@ -67,6 +70,7 @@ const Map = () => {
               </Popup>
             </Marker>
           ))}
+
           <ChangeCenter position={mapPosition} />
           <DetectClick />
         </MapContainer>
@@ -88,6 +92,31 @@ function DetectClick() {
   useMapEvents({
     click: (e) => {
       navigate(`form?lat=${e.latlng.lat}&lng=${e.latlng.lng}`);
+      console.log(e.latlng.lat, e.latlng.lng);
+      //
+      //
+      //
+      const fetchAddress = async () => {
+        try {
+          const response = await fetch(
+            `https://nominatim.openstreetmap.org/reverse?lat=${e.latlng.lat}&lon=${e.latlng.lng}&format=json`
+          );
+          const data = await response.json();
+          if (data.display_name) {
+            console.log(data.display_name);
+          }
+        } catch (error) {
+          console.error("Error fetching address:", error);
+        }
+      };
+
+      fetchAddress();
+      //
+      //
+      //
+    },
+    locationfound: (location) => {
+      console.log(`location found`, location);
     },
   });
   return null;
